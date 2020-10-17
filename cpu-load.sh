@@ -1,7 +1,7 @@
 #!/bin/bash
-PERCENT=$(/home/robot/.config/i3blocks/cpu_usage -d 0 | head -n1)
+PERCENT=$($HOME/Scripts/cpu_usage -d 0 | head -n1 | rev | cut -c2- | rev)
 
-FULL_TEXT="${PERCENT}"
+FULL_TEXT="${PERCENT}%"
 SHORT_TEXT=$FULL_TEXT
 
 # print text
@@ -9,13 +9,13 @@ echo $FULL_TEXT
 echo $SHORT_TEXT
 
 # and color, eventually
-if (( $PERCENT > 100  ))
+if [ $PERCENT -gt 100  ]
 then
     echo "#FF0000"
-elif (( $PERCENT > 80  ))
+elif [ $PERCENT -gt 80  ]
 then
     echo "#FFAE00"
-elif (( $PERCENT > 70  ))
+elif [ $PERCENT -gt 70  ]
 then
     echo "#FFF600"
 else
