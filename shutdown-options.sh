@@ -9,7 +9,7 @@
 #}
 
 
-ask=`zenity --list --title="Select an option" --column="0" "Hibernate" "Shutdown" "Reboot" --width=100 --height=300 --hide-header`
+ask=`zenity --list --title="Select an option" --column="0" "Hibernate" "Logout" "Shutdown" "Reboot" --width=100 --height=300 --hide-header`
 
 #if [ "$ask" == "Lock screen" ]; then
     #confirm "lock screen" $(/home/robot/.config/awesome/scripts/locker.sh)
@@ -27,6 +27,15 @@ if [ "$ask" == "Hibernate" ]; then
     zenity --question --text="Proceed to hibernate?"
     if [ $? = 0 ]; then
     $(systemctl hibernate)
+    else
+        exit
+    fi
+fi
+
+if [ "$ask" == "Logout" ]; then
+    zenity --question --text="Proceed to logout?"
+    if [ $? = 0 ]; then
+    $(i3-msg exit)
     else
         exit
     fi
