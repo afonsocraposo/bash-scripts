@@ -7,4 +7,8 @@ f="${s}${n}"
 maim -u $f
 convert -geometry 100x $f /tmp/screenshot.png
 xclip -selection clipboard -target image/png -i $f &>/dev/null
-dunstify -I /tmp/screenshot.png "Screenshot copied!"
+ACTION=$(dunstify -I /tmp/screenshot.png "Screenshot copied!")
+
+if [ $ACTION == "2" ]; then
+    gimp $f &
+fi
