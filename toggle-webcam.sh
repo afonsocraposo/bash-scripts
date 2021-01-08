@@ -3,7 +3,8 @@
 WEBCAM=$(cat /tmp/webcam 2>/dev/null || echo 1)
 
 if [[ $WEBCAM -eq 1 ]]; then
-    echo "0" | sudo -A tee -a /sys/bus/usb/devices/2-1.1/bConfigurationValue > /dev/null
+    #echo "0" | sudo -A tee -a /sys/bus/usb/devices/2-1.1/bConfigurationValue 2> /dev/null
+    sudo -A sh -c "echo '0' >> /sys/bus/usb/devices/2-1.1/bConfigurationValue" 2> /dev/null
     if [ $? -eq 0 ]; then
         echo 0 > /tmp/webcam
         echo "webcam"
@@ -14,7 +15,8 @@ if [[ $WEBCAM -eq 1 ]]; then
         exit 1
     fi
 else
-    echo "1" | sudo -A tee -a /sys/bus/usb/devices/2-1.1/bConfigurationValue > /dev/null
+    #(echo "1" | sudo -A tee -a /sys/bus/usb/devices/2-1.1/bConfigurationValue)
+    sudo -A sh -c "echo '1' >> /sys/bus/usb/devices/2-1.1/bConfigurationValue" 2> /dev/null
     if [ $? -eq 0 ]; then
         echo 1 > /tmp/webcam
         echo "webcam"
