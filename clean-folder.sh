@@ -1,4 +1,4 @@
 #!/bin/bash
 
 # clean old screenshots
-find $1 -mtime +$2 -type f -delete
+find $1 -daystart -mtime +$2 -exec rm -r {} \;

@@ -33,7 +33,7 @@ for word in string.gmatch(monitors, "%d+:%s+.-%s(.-)%s+.-[\n]") do
     table.insert(keys,index,x)
 end
 
-local command = "convert -background none "
+local command = "convert -background black "
 local v
 for _,k in ipairs(keys) do
     v=screens[k]
