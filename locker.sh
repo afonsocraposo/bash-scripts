@@ -10,4 +10,5 @@ ffmpeg -i /tmp/screenshot_fixed.png -video_size $RES -y -i $LOCK -filter_complex
 
 dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop
 
-i3lock -e -i /tmp/screen.png
+i3lock -e -i /tmp/screen.png \
+    && (sleep 5 && pkill aerc && kitty --class=aerc --title "aerc - email" aerc)

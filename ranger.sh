@@ -1,2 +1,3 @@
-#!/bin/bash
-tmux new-session 'ranger'
+#!/bin/sh
+(wal -R -e -q &)
+ranger
