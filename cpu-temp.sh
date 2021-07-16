@@ -1,5 +1,5 @@
 #!/bin/bash
-TEMP=$(sensors | grep "Package id" | grep -Po "[0-9]{1,3}.[0-9]" | head -1 | rev | cut -c 3- | rev)
+TEMP=$(sensors | grep "Tctl" | grep -Po "[0-9]{1,3}.[0-9]" | head -1 | rev | cut -c 3- | rev)
 
 FULL_TEXT="${TEMP}ºC"
 SHORT_TEXT=$FULL_TEXT

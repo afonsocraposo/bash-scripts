@@ -1,3 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
-neomutt -f imaps://afonsocraposo@imap.gmail.com/
+wal -R -e -q &
+ESCDELAY=0 TERM=screen-256color neomutt #-f PERSONAL
