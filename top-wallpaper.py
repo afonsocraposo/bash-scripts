@@ -36,10 +36,6 @@ if __name__ == "__main__":
     if image_url != "":
         os.system("rm /tmp/background.png 2> /dev/null")
         wget.download(image_url, out="/tmp/background.png")
-        os.system("rm /home/robot/.cache/wal/schemes/_tmp_background_png*")
-        os.system("feh --bg-fill /tmp/background.png")
-        os.system("wal -i /tmp/background.png -q")
-        os.system("/home/robot/.config/polybar/colorblocks/scripts/pywal.sh /tmp/background.png > /dev/null &")
-        os.system("reset")
-        os.system("neofetch")
-    exit(0)
+        exit(0)
+    else:
+        exit(-1)

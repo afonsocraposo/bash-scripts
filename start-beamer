@@ -1,0 +1,32 @@
+echo Starting a new beamer presentation!
+
+echo Year:
+read YEAR
+
+echo Month:
+read MONTH
+
+echo Day:
+read DAY
+
+echo Title:
+read TITLE
+
+PWD=$(pwd)
+TEMPLATE_DIR="/home/robot/Documents/beamer_template"
+
+TITLE2=$(echo $TITLE | tr " " "_")
+FOLDER="${YEAR}_${MONTH}_${DAY}-${TITLE2}"
+
+mkdir $FOLDER
+cd $FOLDER
+mkdir build
+mkdir images
+
+cp $TEMPLATE_DIR/ist_logo.png images
+
+sed "s/replace-title/$TITLE/g" $TEMPLATE_DIR/beamer_template.tex > main.tex
+
+ln -s build/main.pdf ${TITLE2}.pdf
+
+echo "All done!"
