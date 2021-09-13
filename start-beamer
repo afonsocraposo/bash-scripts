@@ -1,16 +1,12 @@
 echo Starting a new beamer presentation!
 
-echo Year:
-read YEAR
+read -p "Year: " YEAR
 
-echo Month:
-read MONTH
+read -p "Month: " MONTH
 
-echo Day:
-read DAY
+read -p "Day: " DAY
 
-echo Title:
-read TITLE
+read -p "Title: " TITLE
 
 PWD=$(pwd)
 TEMPLATE_DIR="/home/robot/Documents/beamer_template"
