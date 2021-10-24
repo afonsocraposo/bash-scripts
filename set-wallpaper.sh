@@ -6,6 +6,6 @@ feh --bg-fill $BACKGROUND
 
 wal -i $BACKGROUND -q
 
-/home/robot/.config/polybar/hack/scripts/pywal.sh $BACKGROUND > /dev/null &
+#/home/robot/.config/polybar/hack/scripts/pywal.sh $BACKGROUND > /dev/null &
 
 exit 0
