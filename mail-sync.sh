@@ -23,7 +23,7 @@ echo "Tagging notmuch scientisst"
 notmuch tag +scientisst folder:\""/(${SCIENTISST}-scientisst)/"\"
 
 echo "Archiving messages sent from:afonso@craposo.com to:afonsocraposo@gmail.com"
-notmuch search --format=text0 --output=files path:/afonsocraposo/INBOX/ from:afonso@craposo.com to:afonsocraposo@gmail.com | xargs -0 -I {} --no-run-if-empty mv -v {} ~/Mail/afonsocraposo/Archive/cur
+notmuch search --format=text --output=files path:/afonsocraposo/INBOX/ from:afonso@craposo.com to:afonsocraposo@gmail.com | grep INBOX | xargs -I {} --no-run-if-empty mv -v {} ~/Mail/afonsocraposo/Archive/cur
 
 echo "Tagging notmuch archived as read"
 notmuch tag -unread tag:unread and folder:/Archive/
