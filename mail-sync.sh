@@ -31,7 +31,7 @@ notmuch tag -unread tag:unread and folder:/Archive/
 echo "Checking for new messages"
 NEW_EMAILS=$(notmuch count tag:new and tag:unread and folder:/INBOX/ and tag:personal)
 UNREAD_EMAILS=$(notmuch count tag:unread and folder:/INBOX/ and tag:personal)
-ACCOUNTS=$(notmuch show --body=false tag:new and tag:unread and folder:/INBOX/ and tag:personal | sed -n "s/^.*\/Mail\/\([A-z\-]*\)\/.*$/\1/p" | sort | uniq | tr '\n' ' ')
+ACCOUNTS=$(notmuch show --body=false tag:new and tag:unread and folder:/INBOX/ and tag:personal | sed -n "s/^.*\/Mail\/\([a-zA-Z\-]*\)\/.*$/\1/p" | sort | uniq | tr '\n' ' ')
 
 if [ "$NEW_EMAILS" -ne "0" ]; then
     echo "Triggering notification"

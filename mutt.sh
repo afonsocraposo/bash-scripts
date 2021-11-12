@@ -1,4 +1,4 @@
 #!/bin/sh
 
-wal -R -e -q &
+/home/robot/Scripts/email-tray-indicator.py 2>/dev/null &
 ESCDELAY=0 TERM=screen-256color neomutt

@@ -1,4 +1,4 @@
-#!/sbin/lua
+#!/usr/bin/lua
 
 require "io"
 
