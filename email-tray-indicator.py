@@ -11,6 +11,9 @@ from gi.repository import AppIndicator3 as appindicator
 TIMEOUT = 60000
 COMMAND = "/usr/bin/notmuch search tag:unread and folder:/INBOX/ -folder:/Junk/ | wc -l"
 
+MAIL_ICON = "/usr/share/icons/Papirus/24x24/panel/indicator-messages.svg"
+MAIL_NEW_ICON = "/usr/share/icons/Papirus/24x24/panel/indicator-messages-red.svg"
+
 
 class MyIndicator:
     new_mail = 0
@@ -19,7 +22,7 @@ class MyIndicator:
         self.app = root
         self.ind = appindicator.Indicator.new(
             self.app.name,
-            "indicator-messages",
+            MAIL_ICON,
             appindicator.IndicatorCategory.APPLICATION_STATUS,
         )
         self.ind.set_status(appindicator.IndicatorStatus.ACTIVE)
@@ -45,10 +48,10 @@ class MyIndicator:
             self.new_mail = int(email_count)
             if self.new_mail > 0:
                 self.ind.set_label(email_count, "")
-                self.ind.set_icon_full("indicator-messages-red", "")
+                self.ind.set_icon_full(MAIL_NEW_ICON, "")
             else:
                 self.ind.set_label("", "")
-                self.ind.set_icon_full("indicator-messages", "")
+                self.ind.set_icon_full(MAIL_ICON, "")
         return True
 
 
