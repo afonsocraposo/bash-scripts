@@ -1,4 +1,4 @@
 #!/bin/bash
 
-# clean old screenshots
-find $1 -daystart -mtime +$2 -exec rm -r {} \;
+# clean folder
+find $1 -maxdepth 1 -daystart -mtime +$2 -exec gio trash {} \;
