@@ -1,17 +1,30 @@
 #!/usr/bin/python
 
+from subprocess import PIPE, Popen
+
 from os import popen
 
 
 def execute(command):
-    return popen(command).read()
+    p = Popen(command, shell=True, stdout=PIPE, stderr=PIPE)
+    stdout, stderr = p.communicate()
+    stdout = stdout.decode("utf-8")
+    stderr = stderr.decode("utf-8")
+    if stderr != "":
+        print(stderr)
+    return stdout
 
 
 print(execute("figlet 'Translate'"))
 print("")
 
+sentence = None
 while True:
-    sentence = input("> ")
+    try:
+        sentence = input("> ")
+    except KeyboardInterrupt:
+        break
+
     language = execute(f'trans -identify "{sentence}" 2> /dev/null | head -n 1')
     if "English" in language:
         print(
