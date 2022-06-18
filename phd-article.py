@@ -5,6 +5,7 @@ import requests
 import bibtexparser
 from scidownl import scihub_download
 import os
+import re
 
 
 def download(doi):
@@ -18,6 +19,9 @@ def download(doi):
     filename = f'{ID} - {entry["title"]}'
     filename_bib = filename.replace(":", "\\:")
     bib_database.entries[0]["ID"] = ID
+    if "pages" in bib_database.entries[0]:
+        pages = bib_database.entries[0]["pages"]
+        bib_database.entries[0]["pages"] = re.sub("[^0-9]+", "-", pages)
 
     if "OUT" in os.environ:
         out_dir = os.environ["OUT"]
@@ -35,6 +39,7 @@ def download(doi):
     if out_dir and "phd" in out_dir:
         with open(f"{out_dir}/references.bib", "a") as f:
             f.write(f"\n{bibtexparser.dumps(bib_database)}\n")
+            print(f"New bib entry: {ID}")
 
 
 if __name__ == "__main__":
