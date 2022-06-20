@@ -15,7 +15,12 @@ def download(doi):
     bib_database = bibtexparser.loads(r.text)
     entry = bib_database.entries[0]
     author = entry["author"]
-    ID = f'{author[: author.index(",")]}{entry["year"]}'
+    if "," in author:
+        ID = f'{author[: author.index(",")]}{entry["year"]}'
+    elif " " in author:
+        ID = f'{author[: author.index(" ")]}{entry["year"]}'
+    else:
+        ID = f'{author}{entry["year"]}'
     filename = f'{ID} - {entry["title"]}'
     filename_bib = filename.replace(":", "\\:")
     bib_database.entries[0]["ID"] = ID
